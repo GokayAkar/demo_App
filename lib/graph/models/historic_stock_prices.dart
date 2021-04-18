@@ -61,16 +61,16 @@ class StockPrices {
 
 class PriceEntry {
   const PriceEntry({
-    required this.date,
+    required this.dateAsMsSinceEpoch,
     required this.price,
   });
 
   factory PriceEntry.fromJson(Map<String, dynamic> json) => PriceEntry(
-        date: DateTime.fromMillisecondsSinceEpoch(json['d']),
+        dateAsMsSinceEpoch: json['d'],
         // ignore: avoid_dynamic_calls
         price: json['c'].toDouble(),
       );
 
-  final DateTime date;
+  final int dateAsMsSinceEpoch;
   final double price;
 }
