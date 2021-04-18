@@ -44,34 +44,34 @@ void main() {
       await tester.pumpApp(
         BlocProvider.value(
           value: counterCubit,
-          child: CounterView(),
+          child: const CounterView(),
         ),
       );
       expect(find.text('$state'), findsOneWidget);
     });
 
-    testWidgets('calls increment when increment button is tapped',
-        (tester) async {
+    // ignore: lines_longer_than_80_chars
+    testWidgets('calls increment when increment button is tapped', (tester) async {
       when(() => counterCubit.state).thenReturn(0);
       when(() => counterCubit.increment()).thenReturn(null);
       await tester.pumpApp(
         BlocProvider.value(
           value: counterCubit,
-          child: CounterView(),
+          child: const CounterView(),
         ),
       );
       await tester.tap(find.byKey(incrementButtonKey));
       verify(() => counterCubit.increment()).called(1);
     });
 
-    testWidgets('calls decrement when decrement button is tapped',
-        (tester) async {
+    // ignore: lines_longer_than_80_chars
+    testWidgets('calls decrement when decrement button is tapped', (tester) async {
       when(() => counterCubit.state).thenReturn(0);
       when(() => counterCubit.decrement()).thenReturn(null);
       await tester.pumpApp(
         BlocProvider.value(
           value: counterCubit,
-          child: CounterView(),
+          child: const CounterView(),
         ),
       );
       await tester.tap(find.byKey(decrementButtonKey));

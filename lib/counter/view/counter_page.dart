@@ -5,10 +5,10 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:demo_app/counter/counter.dart';
 import 'package:demo_app/l10n/l10n.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterPage extends StatelessWidget {
   const CounterPage({Key? key}) : super(key: key);
@@ -17,12 +17,13 @@ class CounterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => CounterCubit(),
-      child: CounterView(),
+      child: const CounterView(),
     );
   }
 }
 
 class CounterView extends StatelessWidget {
+  const CounterView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -35,14 +36,14 @@ class CounterView extends StatelessWidget {
         children: [
           FloatingActionButton(
             key: const Key('counterView_increment_floatingActionButton'),
-            child: const Icon(Icons.add),
             onPressed: () => context.read<CounterCubit>().increment(),
+            child: const Icon(Icons.add),
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
             key: const Key('counterView_decrement_floatingActionButton'),
-            child: const Icon(Icons.remove),
             onPressed: () => context.read<CounterCubit>().decrement(),
+            child: const Icon(Icons.remove),
           ),
         ],
       ),
