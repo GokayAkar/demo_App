@@ -1,5 +1,22 @@
 # Demo App
 
+-Project created with very_good_cli.
+
+-This interface provides an already established bloc pattern/architecture.
+
+-Modified cubit and view folder for this project.
+
+-Added repositories folder, this folder contains all logic for fetching data from API.
+
+-Added models folder and created a suitable model according to incoming data.
+
+-Added equatable package because in order to optimize rebuilds we need to only rebuild when states changes and equatable package makes a lot easier to compare reference types.
+
+
+
+
+
+
 [![Very Good Ventures][logo]][very_good_ventures_link]
 
 Developed with 💙 by [Very Good Ventures][very_good_ventures_link] 🦄
