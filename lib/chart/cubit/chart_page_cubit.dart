@@ -6,8 +6,8 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:bloc/bloc.dart';
-import 'package:demo_app/graph/cubit/graph_state.dart';
-import 'package:demo_app/graph/graph.dart';
+import 'package:demo_app/chart/cubit/chart_state.dart';
+import 'package:demo_app/chart/chart.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,8 +15,8 @@ import '../repositories/stock_api_client.dart';
 
 enum PresentType { daily, weekly, monthly, threeMonth, annual, fiveYear }
 
-class GraphPageCubit extends Cubit<GraphState> {
-  GraphPageCubit() : super(PricesLoadInProgress()) {
+class ChartPageCubit extends Cubit<ChartState> {
+  ChartPageCubit() : super(DataLoading()) {
     getStockPrices();
   }
 
@@ -25,25 +25,25 @@ class GraphPageCubit extends Cubit<GraphState> {
   PresentType _presentType = PresentType.daily;
 
   void getStockPrices() async {
-    emit(PricesLoadInProgress());
+    emit(DataLoading());
     try {
       _stockPrices = await _stockApiClient.getStockPrices();
       emit(
-        PricesLoadSuccess(
+        DataLoadedSuccesfully(
           spots: _getFlSpots(),
         ),
       );
     } on UnauthorizedAccessException {
       emit(UnauthorizedLoad());
     } catch (e) {
-      emit(PricesLoadFailure());
+      emit(DataLoadFailed());
     }
   }
 
   void changePresentation(PresentType presentType) {
     _presentType = presentType;
     emit(
-      PricesLoadSuccess(
+      DataLoadedSuccesfully(
         spots: _getFlSpots(),
       ),
     );

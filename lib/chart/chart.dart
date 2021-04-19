@@ -5,8 +5,8 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
-export 'cubit/graph_page_cubit.dart';
+export 'cubit/chart_page_cubit.dart';
 export 'models/models.dart';
 export 'repositories/repositories.dart';
-export 'view/graph_page.dart';
+export 'view/chart_page.dart';
 export 'widgets/widgets.dart';
