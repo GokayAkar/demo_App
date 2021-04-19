@@ -27,11 +27,25 @@ class GraphPage extends StatelessWidget {
 
 class ChartView extends StatelessWidget {
   const ChartView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    final List<Color> gradientColors = [
+      const Color(0xff23b6e6),
+      const Color(0xff02d39a),
+    ];
+    final Shader linearGradient = LinearGradient(colors: gradientColors).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
+      appBar: AppBar(
+        brightness: Brightness.dark,
+        title: Text(
+          l10n.counterAppBarTitle,
+          style: TextStyle(foreground: Paint()..shader = linearGradient),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.orange,
+      ),
       body: BlocBuilder(
         bloc: context.read<ChartPageCubit>(),
         buildWhen: (previous, current) {
